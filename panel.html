@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Cursos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+        .panel-container {
+            text-align: center;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 90%;
+            box-sizing: border-box;
+        }
+        h1 {
+            color: #5a67d8;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .course-card {
+            display: block;
+            background-color: #7983ff;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            overflow: hidden;
+        }
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+        .course-image-container {
+            position: relative;
+            width: 100%;
+            height: 200px; /* Tamaño fijo para las imágenes */
+        }
+        .course-image {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+        .course-info {
+            padding: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: center;
+            background-color: #5a67d8; /* Color de fondo para la información */
+        }
+    </style>
+</head>
+<body>
+    <div class="panel-container">
+        <h1>Bienvenido al Panel de Cursos</h1>
+        <div class="button-container">
+            <a href="url_del_reproductor.html" class="course-card">
+                <div class="course-image-container">
+                    <img src="https://f005.backblazeb2.com/file/BACKUP-DE-IMAGENES/ESPIRITUALIDAD/ritual+de+frecuencias+(1).png" alt="Miniatura de Ritual de Frecuencias" class="course-image">
+                </div>
+                <div class="course-info">
+                    Reproductor de Frecuencias
+                </div>
+            </a>
+
+            <a href="url_del_taller.html" class="course-card">
+                <div class="course-image-container">
+                    <img src="https://f005.backblazeb2.com/file/BACKUP-DE-IMAGENES/ESPIRITUALIDAD/DESPIERTA+TU+ENERG%C3%8DA+INTERIOR.png" alt="Miniatura del Taller de Energía Interior" class="course-image">
+                </div>
+                <div class="course-info">
+                    Taller Despierta tu Energía Interior
+                </div>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
