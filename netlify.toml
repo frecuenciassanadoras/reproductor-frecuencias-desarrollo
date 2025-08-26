@@ -1,1 +1,5 @@
+[functions]
+  directory = "netlify/functions"
 
+[build]
+  command = "npm install --prefix ./netlify/functions"
