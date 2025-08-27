@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Poppins', sans-serif;
             background-color: #0d1117;
             color: #fff;
         }
@@ -61,8 +61,6 @@
         .prose-invert h1, .prose-invert h2, .prose-invert h3, .prose-invert h4, .prose-invert strong, .prose-invert em {
             color: #fff !important;
         }
-
-        /* Código para que se adapte en móviles */
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
@@ -80,110 +78,48 @@
         <div class="sidebar">
             <h1 class="text-2xl font-bold mb-4">Módulos del Taller</h1>
             <ul id="module-list" class="module-list">
-                </ul>
+                <li onclick="loadModule('modulo1.html')">Módulo 1: La Llamada Interior</li>
+                <li onclick="loadModule('modulo2.html')">Módulo 2: Comprendiendo Tu Campo Energético</li>
+                <li onclick="loadModule('modulo3.html')">Módulo 3: Limpieza y Protección Energética</li>
+                <li onclick="loadModule('modulo4.html')">BONUS: El Poder De Tu Mente Subconsciente</li>
+                <li onclick="loadModule('modulo5.html')">Módulo 4: Las Frecuencias que Sanan</li>
+                <li onclick="loadModule('modulo6.html')">Módulo 5: Los 7 Chakras + el Chakra del Corazón Superior</li>
+                <li onclick="loadModule('modulo7.html')">Módulo 6: Manifestación desde el Alma</li>
+                <li onclick="loadModule('modulo8.html')">Módulo 7: Códigos Sagrados, Números y Señales</li>
+                <li onclick="loadModule('modulo9.html')">Módulo 8: Sanar el Pasado, Activar el Presente</li>
+                <li onclick="loadModule('modulo10.html')">Módulo 9: El Poder del Amor Propio</li>
+                <li onclick="loadModule('modulo11.html')">Módulo 10: Tu Nueva Realidad Energética</li>
+            </ul>
             <button id="logout-button" class="logout-button mt-4">Cerrar Sesión</button>
         </div>
-
         <div class="content-area">
             <div id="welcome-message">
                 <h2 class="text-2xl">¡Bienvenido al Taller!</h2>
                 <p>Haz clic en un módulo de la lista para empezar.</p>
             </div>
-            <div id="module-content" class="hidden">
-                <h2 id="module-title"></h2>
-                <div id="module-body" class="prose prose-invert mt-4">
-                    </div>
-            </div>
+            <div id="module-content">
+                </div>
         </div>
     </div>
-
     <script>
-        const modules = [
-            {
-                id: 1,
-                title: "Módulo 1: La Llamada Interior",
-                content: `
-                    <div class="flex flex-col items-center text-center px-4">
-                        <div class="w-full max-w-4xl py-12">
-                            <h1 class="font-poppins text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#7026e6] leading-tight">La Llamada Interior</h1>
-                            <h2 class="font-poppins text-lg sm:text-xl font-medium text-gray-400 mt-2">Módulo 1</h2>
-                        </div>
-                        <div class="w-full max-w-4xl bg-gray-900 rounded-3xl p-8 sm:p-12 md:p-16 mb-8 shadow-xl">
-                            <h3 class="font-poppins text-2xl sm:text-3xl font-bold mb-6 text-white leading-snug">
-                                <span class="text-[#7026e6]">1. ¿Por qué sientes que "falta algo"?</span>
-                            </h3>
-                            <div class="text-gray-300 leading-relaxed text-base sm:text-lg space-y-6">
-                                <p>¿Alguna vez has sentido ese vacío inexplicable? Ese momento en el que, aún habiendo logrado metas, relaciones o experiencias, algo dentro de ti susurra que no es suficiente…</p>
-                                <p>Esa sensación **no es** debilidad. **No es** una crisis sin sentido. **No es** que estés roto/a.</p>
-                                <div class="bg-gradient-to-r from-[#7026e6] to-[#a368ff] text-white p-6 sm:p-8 rounded-2xl shadow-lg">
-                                    <div class="flex flex-col items-center space-y-4">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 sm:h-12 sm:w-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
-                                        <h4 class="font-poppins text-xl sm:text-2xl font-bold">🔔 Es tu alma hablando.</h4>
-                                        <p class="text-base sm:text-lg text-center opacity-90">Es la energía más profunda de tu ser enviándote una señal:</p>
-                                        <p class="font-poppins text-xl sm:text-2xl font-semibold italic text-center mt-4 p-4 sm:p-6 bg-white bg-opacity-10 rounded-lg">“Has construido hacia afuera… ahora es momento de volver hacia adentro.”</p>
-                                    </div>
-                                </div>
-                                <div class="mt-8 text-left">
-                                    <h4 class="font-poppins text-xl sm:text-2xl font-bold text-white mb-4">🌌 ¿Qué significa esta sensación de “falta”?</h4>
-                                    <div class="text-gray-300 leading-relaxed text-base sm:text-lg space-y-6">
-                                        <p>No se trata de carencia material. Es una <strong class="font-semibold text-white">ausencia de conexión</strong>: contigo mismo, con tu propósito, con lo sagrado.</p>
-                                        <p>Es el cuerpo espiritual diciendo: <em class="font-semibold">“Esto no es todo. Hay más. Hay algo auténtico esperándote.”</em></p>
-                                        <p>Y aunque al principio puede sentirse como ansiedad o confusión, en realidad es una puerta:</p>
-                                    </div>
-                                </div>
-                                <div class="mt-8 bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-inner border-l-4 border-[#7026e6]">
-                                    <p class="font-poppins text-lg sm:text-xl text-white leading-relaxed">
-                                        Una grieta por donde puede entrar la luz.<br>
-                                        <strong class="font-bold text-[#7026e6]">Una invitación a despertar, no a “arreglarte”.</strong>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `
-            },
-            { id: 2, title: "Módulo 2: Comprendiendo Tu Campo Energético", content: "Contenido del Módulo 2..." },
-            { id: 3, title: "Módulo 3: Limpieza y Protección Energética", content: "Contenido del Módulo 3..." },
-            { id: 4, title: "BONUS: El Poder De Tu Mente Subconsciente (PROGRAMACIÓN SUBLIMINAL...)", content: "Contenido del Módulo Bonus..." },
-            { id: 5, title: "Módulo 4: Las Frecuencias que Sanan", content: "Contenido del Módulo 4..." },
-            { id: 6, title: "Módulo 5: Los 7 Chakras + el Chakra del Corazón Superior", content: "Contenido del Módulo 5..." },
-            { id: 7, title: "Módulo 6: Manifestación desde el Alma", content: "Contenido del Módulo 6..." },
-            { id: 8, title: "Módulo 7: Códigos Sagrados, Números y Señales", content: "Contenido del Módulo 7..." },
-            { id: 9, title: "Módulo 8: Sanar el Pasado, Activar el Presente", content: "Contenido del Módulo 8..." },
-            { id: 10, title: "Módulo 9: El Poder del Amor Propio", content: "Contenido del Módulo 9..." },
-            { id: 11, title: "Módulo 10: Tu Nueva Realidad Energética", content: "Contenido del Módulo 10..." },
-        ];
+        const moduleContentDiv = document.getElementById('module-content');
+        const welcomeMessageDiv = document.getElementById('welcome-message');
 
-        const moduleList = document.getElementById('module-list');
-        const moduleTitle = document.getElementById('module-title');
-        const moduleBody = document.getElementById('module-body');
-        const welcomeMessage = document.getElementById('welcome-message');
-        const moduleContent = document.getElementById('module-content');
-        const logoutButton = document.getElementById('logout-button');
-
-        // Genera la lista de módulos
-        modules.forEach(module => {
-            const listItem = document.createElement('li');
-            listItem.textContent = module.title;
-            listItem.onclick = () => {
-                showModule(module.id);
-            };
-            moduleList.appendChild(listItem);
-        });
-
-        // Muestra el contenido del módulo seleccionado
-        function showModule(id) {
-            const selectedModule = modules.find(m => m.id === id);
-            if (selectedModule) {
-                welcomeMessage.classList.add('hidden');
-                moduleContent.classList.remove('hidden');
-                moduleTitle.textContent = selectedModule.title;
-                moduleBody.innerHTML = selectedModule.content;
+        async function loadModule(moduleFileName) {
+            try {
+                welcomeMessageDiv.classList.add('hidden');
+                const response = await fetch(moduleFileName);
+                if (!response.ok) {
+                    throw new Error('Módulo no encontrado');
+                }
+                const html = await response.text();
+                moduleContentDiv.innerHTML = html;
+            } catch (error) {
+                moduleContentDiv.innerHTML = `<h2 class="text-red-500">Error: ${error.message}</h2>`;
             }
         }
 
-        // Función para cerrar sesión
-        logoutButton.onclick = () => {
+        document.getElementById('logout-button').onclick = () => {
             sessionStorage.removeItem('isLoggedIn');
             window.location.href = 'login.html';
         };
