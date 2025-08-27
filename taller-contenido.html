@@ -93,7 +93,222 @@
 
     <script>
         const modules = [
-            { id: 1, title: "Módulo 1: La Llamada Interior", content: "Contenido del Módulo 1..." },
+            { id: 1, title: "Módulo 1: La Llamada Interior", content: "<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contenido del Taller</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117;
+            color: #fff;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 2rem;
+            display: flex;
+            gap: 2rem;
+        }
+        .sidebar {
+            width: 300px;
+            background-color: #161b22;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+        }
+        .module-list li {
+            padding: 0.75rem 0;
+            cursor: pointer;
+            border-bottom: 1px solid #30363d;
+            transition: color 0.2s;
+        }
+        .module-list li:hover {
+            color: #58a6ff;
+        }
+        .content-area {
+            flex-grow: 1;
+            background-color: #161b22;
+            border-radius: 0.5rem;
+            padding: 2rem;
+        }
+        .content-area h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        .logout-button {
+            background-color: #e55353;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .logout-button:hover {
+            background-color: #c43838;
+        }
+
+        /* Código para que se adapte en móviles */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            .sidebar {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h1 class="text-2xl font-bold mb-4">Módulos del Taller</h1>
+            <ul id="module-list" class="module-list">
+                </ul>
+            <button id="logout-button" class="logout-button mt-4">Cerrar Sesión</button>
+        </div>
+
+        <div class="content-area">
+            <div id="welcome-message">
+                <h2 class="text-2xl">¡Bienvenido al Taller!</h2>
+                <p>Haz clic en un módulo de la lista para empezar.</p>
+            </div>
+            <div id="module-content" class="hidden">
+                <h2 id="module-title"></h2>
+                <div id="module-body" class="prose prose-invert mt-4">
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modules = [
+            { 
+                id: 1, 
+                title: "Módulo 1: La Llamada Interior", 
+                content: `
+                    <!DOCTYPE html>
+                    <html lang="es">
+                    <head>
+                        <meta charset="UTF-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <title>El Llamado Silencioso del Alma</title>
+                        <script src="https://cdn.tailwindcss.com"></script>
+                        <link rel="preconnect" href="https://fonts.googleapis.com">
+                        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+                        <style>
+                            /* Aplicando fuentes y color de fondo para la prueba */
+                            body {
+                                font-family: 'Lora', serif;
+                                background-color: #f8fafc; /* Un fondo blanco hueso muy sutil (bg-slate-50) */
+                            }
+                            .font-poppins {
+                                font-family: 'Poppins', sans-serif;
+                            }
+                        </style>
+                    </head>
+                    <body class="py-16 px-4">
+
+                        <div class="max-w-4xl mx-auto text-center">
+                            
+                            <div class="mb-10">
+                                <h1 class="font-poppins text-3xl md:text-4xl font-bold text-gray-800">1. ¿Por qué sientes que “falta algo”?</h1>
+                                <h2 class="font-poppins text-xl md:text-2xl text-purple-600 mt-2">El llamado silencioso del alma</h2>
+                            </div>
+
+                            <div class="max-w-3xl mx-auto text-lg text-gray-600 leading-relaxed mb-12">
+                                <p>¿Alguna vez has sentido ese vacío inexplicable? Ese momento en el que, aún habiendo logrado metas, relaciones o experiencias, algo dentro de ti susurra que no es suficiente…</p>
+                            </div>
+
+                            <div class="max-w-xl mx-auto bg-white p-6 rounded-2xl shadow-lg border border-gray-200 mb-12">
+                                <p class="text-gray-700 leading-relaxed">Esa sensación <strong class="font-semibold">no es</strong> debilidad. <strong class="font-semibold">No es</strong> una crisis sin sentido. <strong class="font-semibold">No es</strong> que estés roto/a.</p>
+                            </div>
+
+                            <div class="bg-gradient-to-r from-purple-600 to-indigo-700 text-white p-8 rounded-2xl shadow-xl text-center mb-12">
+                                <div class="mx-auto w-16 h-16 mb-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-full w-full" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
+                                </div>
+                                <h2 class="font-poppins text-2xl font-bold mb-4">🔔 Es tu alma hablando.</h2>
+                                <p class="text-lg opacity-90">Es la energía más profunda de tu ser enviándote una señal:</p>
+                                <p class="font-poppins text-xl font-semibold italic mt-4 p-4 bg-white/10 rounded-lg">“Has construido hacia afuera…<br>ahora es momento de volver hacia adentro.”</p>
+                            </div>
+
+                            <div class="max-w-3xl mx-auto">
+                                <h2 class="font-poppins text-2xl font-bold text-gray-800 mb-6">🌌 ¿Qué significa esta sensación de “falta”?</h2>
+                                <div class="text-lg text-gray-600 leading-relaxed space-y-6">
+                                    <p>No se trata de carencia material. Es una <strong class="font-semibold text-gray-800">ausencia de conexión</strong>: contigo mismo, con tu propósito, con lo sagrado.</p>
+                                    <p>Es el cuerpo espiritual diciendo: <em class="font-semibold">“Esto no es todo. Hay más. Hay algo auténtico esperándote.”</em></p>
+                                    <p>Y aunque al principio puede sentirse como ansiedad o confusión, en realidad es una puerta:</p>
+                                </div>
+                            </div>
+
+                            <div class="mt-12 max-w-xl mx-auto bg-white p-8 rounded-2xl shadow-lg border-t-4 border-purple-400">
+                                <p class="font-poppins text-xl text-purple-800 leading-relaxed">
+                                    Una grieta por donde puede entrar la luz.
+                                    <br>
+                                    <strong class="font-bold">Una invitación a despertar, no a “arreglarte”.</strong>
+                                </p>
+                            </div>
+
+                        </div>
+                    </body>
+                    </html>
+                `
+            },
+            { id: 2, title: "Módulo 2: Comprendiendo Tu Campo Energético", content: "Contenido del Módulo 2..." },
+            { id: 3, title: "Módulo 3: Limpieza y Protección Energética", content: "Contenido del Módulo 3..." },
+            { id: 4, title: "BONUS: El Poder De Tu Mente Subconsciente (PROGRAMACIÓN SUBLIMINAL...)", content: "Contenido del Módulo Bonus..." },
+            { id: 5, title: "Módulo 4: Las Frecuencias que Sanan", content: "Contenido del Módulo 4..." },
+            { id: 6, title: "Módulo 5: Los 7 Chakras + el Chakra del Corazón Superior", content: "Contenido del Módulo 5..." },
+            { id: 7, title: "Módulo 6: Manifestación desde el Alma", content: "Contenido del Módulo 6..." },
+            { id: 8, title: "Módulo 7: Códigos Sagrados, Números y Señales", content: "Contenido del Módulo 7..." },
+            { id: 9, title: "Módulo 8: Sanar el Pasado, Activar el Presente", content: "Contenido del Módulo 8..." },
+            { id: 10, title: "Módulo 9: El Poder del Amor Propio", content: "Contenido del Módulo 9..." },
+            { id: 11, title: "Módulo 10: Tu Nueva Realidad Energética", content: "Contenido del Módulo 10..." },
+        ];
+
+        const moduleList = document.getElementById('module-list');
+        const moduleTitle = document.getElementById('module-title');
+        const moduleBody = document.getElementById('module-body');
+        const welcomeMessage = document.getElementById('welcome-message');
+        const moduleContent = document.getElementById('module-content');
+        const logoutButton = document.getElementById('logout-button');
+
+        // Genera la lista de módulos
+        modules.forEach(module => {
+            const listItem = document.createElement('li');
+            listItem.textContent = module.title;
+            listItem.onclick = () => {
+                showModule(module.id);
+            };
+            moduleList.appendChild(listItem);
+        });
+
+        // Muestra el contenido del módulo seleccionado
+        function showModule(id) {
+            const selectedModule = modules.find(m => m.id === id);
+            if (selectedModule) {
+                welcomeMessage.classList.add('hidden');
+                moduleContent.classList.remove('hidden');
+                moduleTitle.textContent = selectedModule.title;
+                moduleBody.innerHTML = selectedModule.content;
+            }
+        }
+
+        // Función para cerrar sesión
+        logoutButton.onclick = () => {
+            sessionStorage.removeItem('isLoggedIn');
+            window.location.href = 'login.html';
+        };
+    </script>
+</body>
+</html>" },
             { id: 2, title: "Módulo 2: Comprendiendo Tu Campo Energético", content: "Contenido del Módulo 2..." },
             { id: 3, title: "Módulo 3: Limpieza y Protección Energética", content: "Contenido del Módulo 3..." },
             { id: 4, title: "BONUS: El Poder De Tu Mente Subconsciente (PROGRAMACIÓN SUBLIMINAL...)", content: "Contenido del Módulo Bonus..." },
