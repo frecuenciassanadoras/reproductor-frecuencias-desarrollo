@@ -55,6 +55,18 @@
         .logout-button:hover {
             background-color: #c43838;
         }
+
+        /* Código para que se adapte en móviles */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            .sidebar {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -115,4 +127,18 @@
         function showModule(id) {
             const selectedModule = modules.find(m => m.id === id);
             if (selectedModule) {
-                welcomeMessage.classList.add('
+                welcomeMessage.classList.add('hidden');
+                moduleContent.classList.remove('hidden');
+                moduleTitle.textContent = selectedModule.title;
+                moduleBody.innerHTML = selectedModule.content;
+            }
+        }
+
+        // Función para cerrar sesión
+        logoutButton.onclick = () => {
+            sessionStorage.removeItem('isLoggedIn');
+            window.location.href = 'login.html';
+        };
+    </script>
+</body>
+</html>
