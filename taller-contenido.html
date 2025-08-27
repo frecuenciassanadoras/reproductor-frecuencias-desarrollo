@@ -33,7 +33,7 @@
             border-bottom: 1px solid #30363d;
             transition: color 0.2s;
         }
-        .module-list li:hover {
+        .module-list li:hover, .module-list li.active {
             color: #58a6ff;
         }
         .content-area {
@@ -78,17 +78,17 @@
         <div class="sidebar">
             <h1 class="text-2xl font-bold mb-4">Módulos del Taller</h1>
             <ul id="module-list" class="module-list">
-                <li onclick="loadModule('modulo1.html')">Módulo 1: La Llamada Interior</li>
-                <li onclick="loadModule('modulo2.html')">Módulo 2: Comprendiendo Tu Campo Energético</li>
-                <li onclick="loadModule('modulo3.html')">Módulo 3: Limpieza y Protección Energética</li>
-                <li onclick="loadModule('modulo4.html')">BONUS: El Poder De Tu Mente Subconsciente</li>
-                <li onclick="loadModule('modulo5.html')">Módulo 4: Las Frecuencias que Sanan</li>
-                <li onclick="loadModule('modulo6.html')">Módulo 5: Los 7 Chakras + el Chakra del Corazón Superior</li>
-                <li onclick="loadModule('modulo7.html')">Módulo 6: Manifestación desde el Alma</li>
-                <li onclick="loadModule('modulo8.html')">Módulo 7: Códigos Sagrados, Números y Señales</li>
-                <li onclick="loadModule('modulo9.html')">Módulo 8: Sanar el Pasado, Activar el Presente</li>
-                <li onclick="loadModule('modulo10.html')">Módulo 9: El Poder del Amor Propio</li>
-                <li onclick="loadModule('modulo11.html')">Módulo 10: Tu Nueva Realidad Energética</li>
+                <li onclick="loadModule('modulos/modulo1.html', this)">Módulo 1: La Llamada Interior</li>
+                <li onclick="loadModule('modulos/modulo2.html', this)">Módulo 2: Comprendiendo Tu Campo Energético</li>
+                <li onclick="loadModule('modulos/modulo3.html', this)">Módulo 3: Limpieza y Protección Energética</li>
+                <li onclick="loadModule('modulos/modulo4.html', this)">BONUS: El Poder De Tu Mente Subconsciente</li>
+                <li onclick="loadModule('modulos/modulo5.html', this)">Módulo 4: Las Frecuencias que Sanan</li>
+                <li onclick="loadModule('modulos/modulo6.html', this)">Módulo 5: Los 7 Chakras + el Chakra del Corazón Superior</li>
+                <li onclick="loadModule('modulos/modulo7.html', this)">Módulo 6: Manifestación desde el Alma</li>
+                <li onclick="loadModule('modulos/modulo8.html', this)">Módulo 7: Códigos Sagrados, Números y Señales</li>
+                <li onclick="loadModule('modulos/modulo9.html', this)">Módulo 8: Sanar el Pasado, Activar el Presente</li>
+                <li onclick="loadModule('modulos/modulo10.html', this)">Módulo 9: El Poder del Amor Propio</li>
+                <li onclick="loadModule('modulos/modulo11.html', this)">Módulo 10: Tu Nueva Realidad Energética</li>
             </ul>
             <button id="logout-button" class="logout-button mt-4">Cerrar Sesión</button>
         </div>
@@ -98,16 +98,24 @@
                 <p>Haz clic en un módulo de la lista para empezar.</p>
             </div>
             <div id="module-content">
-                </div>
+            </div>
         </div>
     </div>
     <script>
         const moduleContentDiv = document.getElementById('module-content');
         const welcomeMessageDiv = document.getElementById('welcome-message');
+        const moduleList = document.querySelectorAll('.module-list li');
 
-        async function loadModule(moduleFileName) {
+        async function loadModule(moduleFileName, element) {
             try {
                 welcomeMessageDiv.classList.add('hidden');
+                
+                // Remover la clase 'active' de todos los elementos
+                moduleList.forEach(item => item.classList.remove('active'));
+
+                // Agregar la clase 'active' al elemento que se clickeó
+                element.classList.add('active');
+
                 const response = await fetch(moduleFileName);
                 if (!response.ok) {
                     throw new Error('Módulo no encontrado');
@@ -118,6 +126,14 @@
                 moduleContentDiv.innerHTML = `<h2 class="text-red-500">Error: ${error.message}</h2>`;
             }
         }
+
+        // Cargar el primer módulo al inicio
+        document.addEventListener('DOMContentLoaded', () => {
+            const firstModuleItem = document.querySelector('.module-list li');
+            if (firstModuleItem) {
+                loadModule(firstModuleItem.getAttribute('onclick').split("'")[1], firstModuleItem);
+            }
+        });
 
         document.getElementById('logout-button').onclick = () => {
             sessionStorage.removeItem('isLoggedIn');
