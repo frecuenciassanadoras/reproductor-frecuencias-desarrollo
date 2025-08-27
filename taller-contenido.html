@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contenido del Taller</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117;
+            color: #fff;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 2rem;
+            display: flex;
+            gap: 2rem;
+        }
+        .sidebar {
+            width: 300px;
+            background-color: #161b22;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+        }
+        .module-list li {
+            padding: 0.75rem 0;
+            cursor: pointer;
+            border-bottom: 1px solid #30363d;
+            transition: color 0.2s;
+        }
+        .module-list li:hover {
+            color: #58a6ff;
+        }
+        .content-area {
+            flex-grow: 1;
+            background-color: #161b22;
+            border-radius: 0.5rem;
+            padding: 2rem;
+        }
+        .content-area h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        .logout-button {
+            background-color: #e55353;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .logout-button:hover {
+            background-color: #c43838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h1 class="text-2xl font-bold mb-4">Módulos del Taller</h1>
+            <ul id="module-list" class="module-list">
+                </ul>
+            <button id="logout-button" class="logout-button mt-4">Cerrar Sesión</button>
+        </div>
+
+        <div class="content-area">
+            <div id="welcome-message">
+                <h2 class="text-2xl">¡Bienvenido al Taller!</h2>
+                <p>Haz clic en un módulo de la lista para empezar.</p>
+            </div>
+            <div id="module-content" class="hidden">
+                <h2 id="module-title"></h2>
+                <div id="module-body" class="prose prose-invert mt-4">
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modules = [
+            { id: 1, title: "Módulo 1: La Energía Interior", content: "Contenido del Módulo 1..." },
+            { id: 2, title: "Módulo 2: Despertando tus Chakras", content: "Contenido del Módulo 2..." },
+            { id: 3, title: "Módulo 3: El Poder de la Meditación", content: "Contenido del Módulo 3..." },
+            { id: 4, title: "Módulo 4: Limpieza Energética", content: "Contenido del Módulo 4..." },
+            { id: 5, title: "Módulo 5: Conectando con tu Yo Superior", content: "Contenido del Módulo 5..." },
+            { id: 6, title: "Módulo 6: Sanación con Frecuencias", content: "Contenido del Módulo 6..." },
+            { id: 7, title: "Módulo 7: Manifestación y Abundancia", content: "Contenido del Módulo 7..." },
+            { id: 8, title: "Módulo 8: El Lenguaje del Universo", content: "Contenido del Módulo 8..." },
+            { id: 9, title: "Módulo 9: Creando tu Realidad", content: "Contenido del Módulo 9..." },
+            { id: 10, title: "Módulo 10: Integración Final", content: "Contenido del Módulo 10..." },
+        ];
+
+        const moduleList = document.getElementById('module-list');
+        const moduleTitle = document.getElementById('module-title');
+        const moduleBody = document.getElementById('module-body');
+        const welcomeMessage = document.getElementById('welcome-message');
+        const moduleContent = document.getElementById('module-content');
+        const logoutButton = document.getElementById('logout-button');
+
+        // Genera la lista de módulos
+        modules.forEach(module => {
+            const listItem = document.createElement('li');
+            listItem.textContent = module.title;
+            listItem.onclick = () => {
+                showModule(module.id);
+            };
+            moduleList.appendChild(listItem);
+        });
+
+        // Muestra el contenido del módulo seleccionado
+        function showModule(id) {
+            const selectedModule = modules.find(m => m.id === id);
+            if (selectedModule) {
+                welcomeMessage.classList.add('hidden');
+                moduleContent.classList.remove('hidden');
+                moduleTitle.textContent = selectedModule.title;
+                moduleBody.innerHTML = selectedModule.content;
+            }
+        }
+
+        // Función para cerrar sesión
+        logoutButton.onclick = () => {
+            sessionStorage.removeItem('isLoggedIn');
+            window.location.href = 'login.html';
+        };
+    </script>
+</body>
+</html>
