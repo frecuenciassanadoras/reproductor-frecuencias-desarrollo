@@ -81,16 +81,17 @@
 
     <script>
         const modules = [
-            { id: 1, title: "Módulo 1: La Energía Interior", content: "Contenido del Módulo 1..." },
-            { id: 2, title: "Módulo 2: Despertando tus Chakras", content: "Contenido del Módulo 2..." },
-            { id: 3, title: "Módulo 3: El Poder de la Meditación", content: "Contenido del Módulo 3..." },
-            { id: 4, title: "Módulo 4: Limpieza Energética", content: "Contenido del Módulo 4..." },
-            { id: 5, title: "Módulo 5: Conectando con tu Yo Superior", content: "Contenido del Módulo 5..." },
-            { id: 6, title: "Módulo 6: Sanación con Frecuencias", content: "Contenido del Módulo 6..." },
-            { id: 7, title: "Módulo 7: Manifestación y Abundancia", content: "Contenido del Módulo 7..." },
-            { id: 8, title: "Módulo 8: El Lenguaje del Universo", content: "Contenido del Módulo 8..." },
-            { id: 9, title: "Módulo 9: Creando tu Realidad", content: "Contenido del Módulo 9..." },
-            { id: 10, title: "Módulo 10: Integración Final", content: "Contenido del Módulo 10..." },
+            { id: 1, title: "Módulo 1: La Llamada Interior", content: "Contenido del Módulo 1..." },
+            { id: 2, title: "Módulo 2: Comprendiendo Tu Campo Energético", content: "Contenido del Módulo 2..." },
+            { id: 3, title: "Módulo 3: Limpieza y Protección Energética", content: "Contenido del Módulo 3..." },
+            { id: 4, title: "BONUS: El Poder De Tu Mente Subconsciente (PROGRAMACIÓN SUBLIMINAL...)", content: "Contenido del Módulo Bonus..." },
+            { id: 5, title: "Módulo 4: Las Frecuencias que Sanan", content: "Contenido del Módulo 4..." },
+            { id: 6, title: "Módulo 5: Los 7 Chakras + el Chakra del Corazón Superior", content: "Contenido del Módulo 5..." },
+            { id: 7, title: "Módulo 6: Manifestación desde el Alma", content: "Contenido del Módulo 6..." },
+            { id: 8, title: "Módulo 7: Códigos Sagrados, Números y Señales", content: "Contenido del Módulo 7..." },
+            { id: 9, title: "Módulo 8: Sanar el Pasado, Activar el Presente", content: "Contenido del Módulo 8..." },
+            { id: 10, title: "Módulo 9: El Poder del Amor Propio", content: "Contenido del Módulo 9..." },
+            { id: 11, title: "Módulo 10: Tu Nueva Realidad Energética", content: "Contenido del Módulo 10..." },
         ];
 
         const moduleList = document.getElementById('module-list');
@@ -114,18 +115,4 @@
         function showModule(id) {
             const selectedModule = modules.find(m => m.id === id);
             if (selectedModule) {
-                welcomeMessage.classList.add('hidden');
-                moduleContent.classList.remove('hidden');
-                moduleTitle.textContent = selectedModule.title;
-                moduleBody.innerHTML = selectedModule.content;
-            }
-        }
-
-        // Función para cerrar sesión
-        logoutButton.onclick = () => {
-            sessionStorage.removeItem('isLoggedIn');
-            window.location.href = 'login.html';
-        };
-    </script>
-</body>
-</html>
+                welcomeMessage.classList.add('
