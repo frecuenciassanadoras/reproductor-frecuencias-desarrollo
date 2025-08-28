@@ -35,6 +35,7 @@
             left: 0;
             height: 100%;
             z-index: 50;
+            overflow-y: scroll; /* SOLUCIÓN: Permite el scroll vertical */
         }
         .sidebar.active {
             transform: translateX(0);
@@ -96,6 +97,9 @@
                 width: 75%;
                 max-width: 300px;
             }
+            .content-area {
+                margin-top: 4rem; /* SOLUCIÓN: para que el contenido no se superponga */
+            }
         }
         .backdrop {
             position: fixed;
@@ -110,6 +114,14 @@
         .backdrop.active {
             display: block;
         }
+        .close-menu-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -122,6 +134,11 @@
 
     <div class="container">
         <div class="sidebar" id="sidebar">
+            <button class="close-menu-button md:hidden" onclick="toggleMenu()">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
             <h1 class="text-2xl font-bold mb-4">Módulos del Taller</h1>
             <ul id="module-list" class="module-list">
                 <li onclick="loadModule('modulos/modulo1.html', this)">Módulo 1: La Llamada Interior</li>
@@ -189,7 +206,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             const firstModuleItem = document.querySelector('.module-list li');
             if (firstModuleItem) {
-                // Extraer el nombre del archivo del atributo onclick
                 const moduleFileName = firstModuleItem.getAttribute('onclick').match(/'([^']+)'/)[1];
                 loadModule(moduleFileName, firstModuleItem);
             }
