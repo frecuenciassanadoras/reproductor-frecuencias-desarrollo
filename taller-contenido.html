@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contenido del Taller</title>
+    <title>Taller de Transformación Energética</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,6 +26,18 @@
             background-color: #161b22;
             border-radius: 0.5rem;
             padding: 1.5rem;
+            
+            /* Clases para el menú móvil */
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            z-index: 50;
+        }
+        .sidebar.active {
+            transform: translateX(0);
         }
         .module-list li {
             padding: 0.75rem 0;
@@ -61,21 +73,55 @@
         .prose-invert h1, .prose-invert h2, .prose-invert h3, .prose-invert h4, .prose-invert strong, .prose-invert em {
             color: #fff !important;
         }
-        @media (max-width: 768px) {
+
+        /* Responsive styles para Desktop */
+        @media (min-width: 768px) {
+            .sidebar {
+                transform: translateX(0);
+                position: relative;
+            }
+            .hamburger-menu {
+                display: none;
+            }
+        }
+        
+        /* Responsive styles para Mobile */
+        @media (max-width: 767px) {
             .container {
                 flex-direction: column;
                 gap: 1rem;
                 padding: 1rem;
             }
             .sidebar {
-                width: 100%;
+                width: 75%;
+                max-width: 300px;
             }
+        }
+        .backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 40;
+            display: none;
+        }
+        .backdrop.active {
+            display: block;
         }
     </style>
 </head>
 <body>
+    <button class="hamburger-menu fixed top-4 left-4 z-50 md:hidden bg-gray-800 p-2 rounded-md shadow-lg" onclick="toggleMenu()">
+        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+    </button>
+    <div class="backdrop" onclick="toggleMenu()"></div>
+
     <div class="container">
-        <div class="sidebar">
+        <div class="sidebar" id="sidebar">
             <h1 class="text-2xl font-bold mb-4">Módulos del Taller</h1>
             <ul id="module-list" class="module-list">
                 <li onclick="loadModule('modulos/modulo1.html', this)">Módulo 1: La Llamada Interior</li>
@@ -92,6 +138,7 @@
             </ul>
             <button id="logout-button" class="logout-button mt-4">Cerrar Sesión</button>
         </div>
+        
         <div class="content-area">
             <div id="welcome-message">
                 <h2 class="text-2xl">¡Bienvenido al Taller!</h2>
@@ -101,20 +148,22 @@
             </div>
         </div>
     </div>
+    
     <script>
         const moduleContentDiv = document.getElementById('module-content');
         const welcomeMessageDiv = document.getElementById('welcome-message');
         const moduleList = document.querySelectorAll('.module-list li');
+        const sidebar = document.getElementById('sidebar');
+        const backdrop = document.querySelector('.backdrop');
 
         async function loadModule(moduleFileName, element) {
             try {
                 welcomeMessageDiv.classList.add('hidden');
                 
-                // Remover la clase 'active' de todos los elementos
                 moduleList.forEach(item => item.classList.remove('active'));
-
-                // Agregar la clase 'active' al elemento que se clickeó
-                element.classList.add('active');
+                if (element) {
+                    element.classList.add('active');
+                }
 
                 const response = await fetch(moduleFileName);
                 if (!response.ok) {
@@ -122,16 +171,27 @@
                 }
                 const html = await response.text();
                 moduleContentDiv.innerHTML = html;
+                
+                // Cerrar el menú después de cargar el módulo en móvil
+                if (window.innerWidth < 768) {
+                    toggleMenu();
+                }
             } catch (error) {
                 moduleContentDiv.innerHTML = `<h2 class="text-red-500">Error: ${error.message}</h2>`;
             }
         }
 
-        // Cargar el primer módulo al inicio
+        function toggleMenu() {
+            sidebar.classList.toggle('active');
+            backdrop.classList.toggle('active');
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             const firstModuleItem = document.querySelector('.module-list li');
             if (firstModuleItem) {
-                loadModule(firstModuleItem.getAttribute('onclick').split("'")[1], firstModuleItem);
+                // Extraer el nombre del archivo del atributo onclick
+                const moduleFileName = firstModuleItem.getAttribute('onclick').match(/'([^']+)'/)[1];
+                loadModule(moduleFileName, firstModuleItem);
             }
         });
 
