@@ -26,19 +26,7 @@
             background-color: #161b22;
             border-radius: 0.5rem;
             padding: 1.5rem;
-            
-            /* Clases para el menú móvil */
-            transform: translateX(-100%);
-            transition: transform 0.3s ease-in-out;
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100%;
-            z-index: 50;
-            overflow-y: scroll; /* SOLUCIÓN: Permite el scroll vertical */
-        }
-        .sidebar.active {
-            transform: translateX(0);
+            position: relative; /* SOLUCIÓN: Cambiado a posición relativa por defecto */
         }
         .module-list li {
             padding: 0.75rem 0;
@@ -75,17 +63,6 @@
             color: #fff !important;
         }
 
-        /* Responsive styles para Desktop */
-        @media (min-width: 768px) {
-            .sidebar {
-                transform: translateX(0);
-                position: relative;
-            }
-            .hamburger-menu {
-                display: none;
-            }
-        }
-        
         /* Responsive styles para Mobile */
         @media (max-width: 767px) {
             .container {
@@ -96,11 +73,43 @@
             .sidebar {
                 width: 75%;
                 max-width: 300px;
+                transform: translateX(-100%);
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100%;
+                z-index: 50;
+                overflow-y: scroll;
+                transition: transform 0.3s ease-in-out;
+                border-radius: 0;
+            }
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            .hamburger-menu {
+                position: fixed;
+                top: 1rem;
+                left: 1rem;
+                z-index: 60;
+                background-color: #161b22;
+                padding: 0.5rem;
+                border-radius: 0.25rem;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             }
             .content-area {
-                margin-top: 4rem; /* SOLUCIÓN: para que el contenido no se superponga */
+                margin-top: 4rem;
+                width: 100%;
+            }
+            .close-menu-button {
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
             }
         }
+        
         .backdrop {
             position: fixed;
             top: 0;
@@ -114,18 +123,10 @@
         .backdrop.active {
             display: block;
         }
-        .close-menu-button {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
-    <button class="hamburger-menu fixed top-4 left-4 z-50 md:hidden bg-gray-800 p-2 rounded-md shadow-lg" onclick="toggleMenu()">
+    <button class="hamburger-menu md:hidden" onclick="toggleMenu()">
         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
         </svg>
