@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acceso al Taller</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             background-color: #111827;
@@ -14,6 +17,9 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            margin: 0;
+            padding: 1rem;
+            box-sizing: border-box;
         }
         .container {
             background: rgba(31, 41, 55, 0.9);
@@ -22,6 +28,8 @@
             border-radius: 1rem;
             padding: 2rem;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            max-width: 450px;
+            width: 100%;
         }
         .input-field {
             background-color: #374151;
@@ -61,10 +69,14 @@
             </button>
         </form>
 
-        <p class="text-center mt-6">¿Aún no lo compras? Adquiérelo aquí:</p>
-        <a href="https://pay.hotmart.com/J99664409O?off=ompz33n5&checkoutMode=10" target="_blank" class="w-full mt-2 text-white font-bold py-3 px-4 rounded-lg shadow-lg flex items-center justify-center gap-2" style="background-color: #ff8c00;">
-            <span>Comprar en Hotmart</span>
-        </a>
+        <div class="text-center mt-6">
+            <p class="text-gray-400 text-sm italic mb-4">
+                No postergues tu despertar, tu momento es hoy. Dentro encontrarás 10 módulos con prácticas energéticas, meditaciones, rituales y recursos para elevar tu vibración y transformar tu vida desde adentro.
+            </p>
+            <a href="https://pay.hotmart.com/J99664409O?off=ompz33n5&checkoutMode=10" target="_blank" class="w-full mt-2 text-white font-bold py-3 px-4 rounded-lg shadow-lg flex items-center justify-center gap-2" style="background-color: #ff8c00;">
+                <span>Unirme al Taller Ahora</span>
+            </a>
+        </div>
         <div id="status-message-taller" class="text-center mt-4 text-sm font-medium hidden"></div>
     </div>
 
@@ -94,7 +106,6 @@
                     statusMessage.textContent = '¡Inicio de sesión exitoso! Redirigiendo...';
                     statusMessage.className = 'text-center mt-4 text-sm font-medium text-green-500';
                     setTimeout(() => {
-                        // Redirigir a la página del taller una vez que se verifique
                         window.location.href = 'taller-contenido.html';
                     }, 1000);
                 } else {
