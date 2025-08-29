@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         body {
             background-color: #111827;
@@ -51,13 +50,6 @@
         .whatsapp-button:hover {
             transform: scale(1.03);
         }
-        .hotmart-button {
-            background-color: #ff8c00;
-            transition: transform 0.2s ease-in-out;
-        }
-        .hotmart-button:hover {
-            transform: scale(1.03);
-        }
     </style>
 </head>
 <body>
@@ -86,7 +78,7 @@
 
     <script>
         const SUPABASE_URL = 'https://dothtuwrsplezhaxkjmw.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRvdGh0dXdyc3BsZXpoYXJzYWhjbXciLCJyb2xlIjoiYW5vbiIsImlhdCI6MTY2NDMyMDgyMSwiZXhwIjoxOTc5ODk2NDIxfQ.B13yokCG9VQ49kjZ5pHeBdqBtW7i2CP8yg2l2Ekhqnc';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRvdGh0dXdyc3BsZXpoYXhram13Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU2NzIzMjEsImV4cCI6MjA3MTI0ODMyMX0.B13yokCG9VQ49kjZ5pHeBdqBtW7i2CP8yg2l2Ekhqnc';
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         document.getElementById('login-form').addEventListener('submit', async function(event) {
