@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Cursos - Modelo 3</title>
+    <title>Panel de Cursos</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -96,6 +96,12 @@
     </style>
 </head>
 <body>
+    <script>
+        // SOLUCIÓN: Si no hay sesión iniciada, redirige al login principal
+        if (!sessionStorage.getItem('isLoggedIn')) {
+            window.location.href = 'login.html';
+        }
+    </script>
     <div class="panel-container">
         <h1>Bienvenido al Panel de Cursos</h1>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
