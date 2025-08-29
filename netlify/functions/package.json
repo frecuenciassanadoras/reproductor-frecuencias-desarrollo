@@ -1,0 +1,12 @@
+{
+  "name": "login-functions",
+  "version": "1.0.0",
+  "description": "Netlify functions for login",
+  "main": "login.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.38.4"
+  }
+}
