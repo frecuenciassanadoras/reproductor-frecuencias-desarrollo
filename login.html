@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         body {
             background-color: #111827;
@@ -84,6 +85,12 @@
     </div>
 
     <script>
+        // Inicializa Supabase con tu URL y clave anónima.
+        // **IMPORTANTE: Reemplaza estos valores con los de tu proyecto de Supabase.**
+        const SUPABASE_URL = 'https://YOUR_SUPABASE_URL.supabase.co'; // Tu URL de Supabase
+        const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY'; // Tu clave anónima de Supabase
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
         document.getElementById('login-form').addEventListener('submit', async function(event) {
             event.preventDefault();
             const email = document.getElementById('email').value;
@@ -94,32 +101,23 @@
             statusMessage.className = 'text-center mt-4 text-sm font-medium text-gray-400';
             statusMessage.classList.remove('hidden');
 
-            try {
-                const response = await fetch('/.netlify/functions/reproductor-login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ email, password })
-                });
+            // Lógica de inicio de sesión con Supabase
+            const { error } = await supabase.auth.signInWithPassword({
+                email: email,
+                password: password,
+            });
 
-                const result = await response.json();
-
-                if (response.ok) {
-                    statusMessage.textContent = '¡Inicio de sesión exitoso! Redirigiendo...';
-                    statusMessage.className = 'text-center mt-4 text-sm font-medium text-green-500';
-                    setTimeout(() => {
-                        window.location.href = 'panel-reproductor.html';
-                    }, 1000);
-                } else {
-                    statusMessage.textContent = result.message || 'Error en el inicio de sesión';
-                    statusMessage.className = 'text-center mt-4 text-sm font-medium text-red-500';
-                }
-
-            } catch (error) {
-                console.error('Error de red:', error);
-                statusMessage.textContent = 'Error de conexión. Intenta de nuevo.';
+            if (error) {
+                console.error('Error de Supabase:', error);
+                statusMessage.textContent = 'Email o contraseña incorrectos. Por favor, revisa tus datos.';
                 statusMessage.className = 'text-center mt-4 text-sm font-medium text-red-500';
+            } else {
+                statusMessage.textContent = '¡Inicio de sesión exitoso! Redirigiendo...';
+                statusMessage.className = 'text-center mt-4 text-sm font-medium text-green-500';
+                setTimeout(() => {
+                    // Redirigir al panel del reproductor después del login
+                    window.location.href = 'panel-reproductor.html';
+                }, 1000);
             }
         });
     </script>
