@@ -97,11 +97,14 @@
 
     <script>
         document.getElementById('login-form-taller').addEventListener('submit', async function(event) {
-            event.preventDefault();
+            // Se previene el comportamiento predeterminado del formulario
+            event.preventDefault(); 
+            
             const email = document.getElementById('email-taller').value;
             const password = document.getElementById('password-taller').value;
             const statusMessage = document.getElementById('status-message-taller');
             
+            // Mostrar mensaje de carga
             statusMessage.textContent = 'Cargando...';
             statusMessage.className = 'text-center mt-4 text-sm font-medium text-gray-400';
             statusMessage.classList.remove('hidden');
@@ -121,14 +124,14 @@
                     statusMessage.textContent = '¡Inicio de sesión exitoso! Redirigiendo...';
                     statusMessage.className = 'text-center mt-4 text-sm font-medium text-green-500';
                     setTimeout(() => {
-                        window.location.href = 'taller-contenido.html'; // CORRECCIÓN: La redirección ahora es al contenido del taller
+                        window.location.href = 'taller-contenido.html';
                     }, 1000);
                 } else {
-                    statusMessage.textContent = result.message || 'Error en el inicio de sesión';
+                    statusMessage.textContent = result.message || 'Error en el inicio de sesión. Credenciales incorrectas.';
                     statusMessage.className = 'text-center mt-4 text-sm font-medium text-red-500';
                 }
             } catch (error) {
-                console.error('Error de red:', error);
+                console.error('Error de red o de la función:', error);
                 statusMessage.textContent = 'Error de conexión. Intenta de nuevo.';
                 statusMessage.className = 'text-center mt-4 text-sm font-medium text-red-500';
             }
