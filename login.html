@@ -85,10 +85,8 @@
     </div>
 
     <script>
-        // Inicializa Supabase con tu URL y clave anónima.
-        // **IMPORTANTE: Reemplaza estos valores con los de tu proyecto de Supabase.**
-        const SUPABASE_URL = 'https://YOUR_SUPABASE_URL.supabase.co'; // Tu URL de Supabase
-        const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY'; // Tu clave anónima de Supabase
+        const SUPABASE_URL = 'https://dothtuwrsplezhaxkjmw.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRvdGh0dXdyc3BsZXpoYXJzYWhjbXciLCJyb2xlIjoiYW5vbiIsImlhdCI6MTY2NDMyMDgyMSwiZXhwIjoxOTc5ODk2NDIxfQ.B13yokCG9VQ49kjZ5pHeBdqBtW7i2CP8yg2l2Ekhqnc';
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         document.getElementById('login-form').addEventListener('submit', async function(event) {
@@ -101,7 +99,6 @@
             statusMessage.className = 'text-center mt-4 text-sm font-medium text-gray-400';
             statusMessage.classList.remove('hidden');
 
-            // Lógica de inicio de sesión con Supabase
             const { error } = await supabase.auth.signInWithPassword({
                 email: email,
                 password: password,
@@ -115,7 +112,6 @@
                 statusMessage.textContent = '¡Inicio de sesión exitoso! Redirigiendo...';
                 statusMessage.className = 'text-center mt-4 text-sm font-medium text-green-500';
                 setTimeout(() => {
-                    // Redirigir al panel del reproductor después del login
                     window.location.href = 'panel-reproductor.html';
                 }, 1000);
             }
