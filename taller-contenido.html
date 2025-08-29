@@ -154,7 +154,7 @@
                 <li onclick="loadModule('modulos/modulo10.html', this)">Módulo 9: El Poder del Amor Propio</li>
                 <li onclick="loadModule('modulos/modulo11.html', this)">Módulo 10: Tu Nueva Realidad Energética</li>
             </ul>
-            <button id="logout-button" class="logout-button mt-4">Cerrar Sesión</button>
+            <a href="index.html" class="logout-button mt-4">Cerrar Sesión</a>
         </div>
         
         <div class="content-area">
@@ -210,11 +210,6 @@
                 loadModule(moduleFileName, firstModuleItem);
             }
         });
-
-        document.getElementById('logout-button').onclick = () => {
-            // CORRECCIÓN DEFINITIVA: El botón de cerrar sesión te lleva al login principal.
-            window.location.href = 'login.html';
-        };
     </script>
 </body>
 </html>
