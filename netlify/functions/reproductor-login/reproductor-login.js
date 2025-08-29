@@ -1,25 +1,43 @@
-exports.handler = async (event, context) => {
-    if (event.httpMethod !== 'POST') {
-        return { statusCode: 405, body: 'Método no permitido' };
-    }
+import { createClient } from '@supabase/supabase-js';
 
-    try {
-        const { email, password } = JSON.parse(event.body);
+exports.handler = async (event) => {
+  if (event.httpMethod !== "POST") {
+    return { statusCode: 405, body: "Method Not Allowed" };
+  }
 
-        // Aquí iría tu lógica de verificación con Supabase o tu base de datos
-        // Por ahora, usamos una validación simple para probar el flujo
-        if (email === 'demo@test.com' && password === '123456') {
-            return {
-                statusCode: 200,
-                body: JSON.stringify({ message: 'Acceso concedido' })
-            };
-        } else {
-            return {
-                statusCode: 401,
-                body: JSON.stringify({ message: 'Email o contraseña incorrectos' })
-            };
-        }
-    } catch (error) {
-        return { statusCode: 500, body: 'Error interno del servidor' };
-    }
+  const { email, password } = JSON.parse(event.body);
+
+  if (!email || !password) {
+    return { statusCode: 400, body: "Email and password are required" };
+  }
+
+  const SUPABASE_URL = process.env.SUPABASE_URL || "TU_URL_DE_SUPABASE";
+  const SUPABASE_KEY = process.env.SUPABASE_KEY || "TU_API_KEY_DE_SUPABASE";
+
+  const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  const { data: usuarios, error } = await supabase
+    .from('reproductor_usuarios')
+    .select('email, password')
+    .eq('email', email)
+    .single();
+
+  if (error || !usuarios) {
+    return {
+      statusCode: 401,
+      body: JSON.stringify({ message: "Usuario no encontrado" }),
+    };
+  }
+
+  if (usuarios.password !== password) {
+    return {
+      statusCode: 401,
+      body: JSON.stringify({ message: "Contraseña incorrecta" }),
+    };
+  }
+
+  return {
+    statusCode: 200,
+    body: JSON.stringify({ message: "Login exitoso!" }),
+  };
 };
