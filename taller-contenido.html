@@ -48,21 +48,10 @@
             font-weight: bold;
             margin-bottom: 1rem;
         }
-        .logout-button {
-            background-color: #e55353;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 0.25rem;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        .logout-button:hover {
-            background-color: #c43838;
-        }
+        /* Estilos del botón de Cerrar Sesión movidos a clases de Tailwind directamente en el HTML */
         .prose-invert h1, .prose-invert h2, .prose-invert h3, .prose-invert h4, .prose-invert strong, .prose-invert em {
             color: #fff !important;
         }
-
         /* Responsive styles para Mobile */
         @media (max-width: 767px) {
             .container {
@@ -161,7 +150,6 @@
                 <li onclick="loadModule('modulos/modulo10.html', this)">Módulo 9: El Poder del Amor Propio</li>
                 <li onclick="loadModule('modulos/modulo11.html', this)">Módulo 10: Tu Nueva Realidad Energética</li>
             </ul>
-            <a href="index.html" class="logout-button mt-4">Cerrar Sesión</a>
         </div>
         
         <div class="content-area">
@@ -171,6 +159,9 @@
             </div>
             <div id="module-content">
             </div>
+            <a href="index.html" class="block w-full text-center mt-6 px-6 py-3 bg-red-600 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 transition duration-300 ease-in-out">
+                Cerrar Sesión
+            </a>
         </div>
     </div>
     
