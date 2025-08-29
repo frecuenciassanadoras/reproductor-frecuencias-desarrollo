@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión - Frecuencias Sanadoras</title>
+    <title>Iniciar Sesión - Reproductor de Frecuencias</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             background-color: #111827;
@@ -14,6 +17,9 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            margin: 0;
+            padding: 1rem;
+            box-sizing: border-box;
         }
         .container {
             background: rgba(31, 41, 55, 0.9);
@@ -22,6 +28,8 @@
             border-radius: 1rem;
             padding: 2rem;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            max-width: 450px;
+            width: 100%;
         }
         .input-field {
             background-color: #374151;
@@ -33,14 +41,14 @@
             transition: transform 0.2s ease-in-out;
         }
         .button-primary:hover {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
         .whatsapp-button {
             background-color: #25d366;
             transition: transform 0.2s ease-in-out;
         }
         .whatsapp-button:hover {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
     </style>
 </head>
@@ -59,12 +67,13 @@
             <button type="submit" class="button-primary mt-4 w-full text-white font-bold py-3 px-4 rounded-lg shadow-lg">
                 Iniciar Sesión
             </button>
-            <a href="https://wa.link/yy4etp" target="_blank" class="whatsapp-button mt-2 w-full text-white font-bold py-3 px-4 rounded-lg shadow-lg flex items-center justify-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-whatsapp"><path d="M16.5 7.5c-2.3-2.3-5.7-2.3-8 0L7 8l-2 6 6-2 1.5 1.5c2.3 2.3 5.7 2.3 8 0s2.3-5.7 0-8z"/><path d="M16 16l-2-2-4 4-2-2"/></svg>
-                <span>Soporte por WhatsApp</span>
-            </a>
             <div id="status-message" class="text-center mt-4 text-sm font-medium hidden"></div>
         </form>
+
+        <a href="https://wa.link/yy4etp" target="_blank" class="whatsapp-button mt-4 w-full text-white font-bold py-3 px-4 rounded-lg shadow-lg flex items-center justify-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-whatsapp"><path d="M16.5 7.5c-2.3-2.3-5.7-2.3-8 0L7 8l-2 6 6-2 1.5 1.5c2.3 2.3 5.7 2.3 8 0s2.3-5.7 0-8z"/><path d="M16 16l-2-2-4 4-2-2"/></svg>
+            <span>Soporte por WhatsApp</span>
+        </a>
     </div>
 
     <script>
@@ -79,7 +88,7 @@
             statusMessage.classList.remove('hidden');
 
             try {
-                const response = await fetch('/.netlify/functions/login', {
+                const response = await fetch('/.netlify/functions/reproductor-login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -93,8 +102,7 @@
                     statusMessage.textContent = '¡Inicio de sesión exitoso! Redirigiendo...';
                     statusMessage.className = 'text-center mt-4 text-sm font-medium text-green-500';
                     setTimeout(() => {
-                        sessionStorage.setItem('isLoggedIn', 'true');
-                        window.location.href = 'panel.html'; 
+                        window.location.href = 'panel-reproductor.html';
                     }, 1000);
                 } else {
                     statusMessage.textContent = result.message || 'Error en el inicio de sesión';
