@@ -1,9 +1,0 @@
-{
-  "name": "netlify-function",
-  "version": "1.0.0",
-  "description": "Netlify function for login",
-  "main": "index.js",
-  "dependencies": {
-    "@supabase/supabase-js": "^2.38.4"
-  }
-}
